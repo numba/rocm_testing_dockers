@@ -1,0 +1,11 @@
+--- hip_vector_types.h.orig	2017-03-01 23:25:16.026420075 +0000
++++ hip_vector_types.h	2017-03-01 23:25:30.494420121 +0000
+@@ -32,7 +32,7 @@
+ #error("This version of HIP requires a newer version of HCC.");
+ #endif
+ 
+-#if 0
++#if __HCC__
+ #include <hc_short_vector.hpp>
+ 
+ using namespace hc::short_vector;
