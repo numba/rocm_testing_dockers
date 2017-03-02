@@ -3,16 +3,16 @@ all: pyroclib.out
 test: test_numba test_pyroclib
 
 base.out: base/Dockerfile base/build.sh
-	cd base && ./build.sh > ../$@
+	cd base && ./build.sh | tee ../$@
 
 numba.out: base.out numba/Dockerfile numba/build.sh
-	cd numba && ./build.sh > ../$@
+	cd numba && ./build.sh | tee ../$@
 
 rocblas.out: numba.out rocblas/Dockerfile rocblas/build.sh
-	cd rocblas && ./build.sh > ../$@
+	cd rocblas && ./build.sh | tee ../$@
 
 rocfft.out: numba.out rocfft/Dockerfile rocfft/build.sh
-	cd rocblas && ./build.sh > ../$@
+	cd rocblas && ./build.sh | tee ../$@
 
 pyroclib/roclib/libTensile.so pyroclib/roclib/librocblas-hcc.so: rocblas.out rocblas/getoutput.sh
 	mkdir -p pyroclib/roclib
@@ -25,7 +25,7 @@ pyroclib/roclib/librocfft-hcc-d.so: rocfft/getoutput.sh rocfft.out
 	cp rocfft/output/librocfft-hcc-d.so pyroclib/roclib/librocfft-hcc-d.so
 
 pyroclib.out: pyroclib/roclib/libTensile.so pyroclib/roclib/librocblas-hcc.so pyroclib/roclib/librocfft-hcc-d.so pyroclib/Dockerfile pyroclib/build.sh
-	cd pyroclib && ./build.sh > ../$@
+	cd pyroclib && ./build.sh | tee ../$@
 
 test_numba: numba.out
 	cd numba && ./runtests.sh
