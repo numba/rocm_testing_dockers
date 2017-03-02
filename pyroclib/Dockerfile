@@ -2,7 +2,7 @@
 FROM numba_rocm_numba
 
 # Get pyroclib
-RUN git clone https://github.com/sklam/pyroclib
+RUN git clone https://github.com/numba/pyroclib
 ARG PYROCLIB_SHA
 WORKDIR pyroclib
 RUN git fetch

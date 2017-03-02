@@ -1,1 +1,1 @@
-docker build --build-arg PYROCLIB_SHA="7ee5038" -t numba_rocm_pyroclib .
+docker build --build-arg PYROCLIB_SHA="bbe7d3b" -t numba_rocm_pyroclib .
