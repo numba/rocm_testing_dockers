@@ -12,7 +12,7 @@ rocblas.out: numba.out rocblas/Dockerfile rocblas/build.sh
 	cd rocblas && ./build.sh | tee ../$@
 
 rocfft.out: numba.out rocfft/Dockerfile rocfft/build.sh
-	cd rocblas && ./build.sh | tee ../$@
+	cd rocfft && ./build.sh | tee ../$@
 
 pyroclib/roclib/libTensile.so pyroclib/roclib/librocblas-hcc.so: rocblas.out rocblas/getoutput.sh
 	mkdir -p pyroclib/roclib
